@@ -5,6 +5,8 @@
 It helps an owner create and send a real PayPal invoice, lets the client discuss payment options with an AI assistant, and keeps every agreed payment plan inside rules set by the owner.
 
 Nudge does not use mock invoices or fake payments. PayPal Sandbox is used by default, so the complete flow can be tested safely with PayPal Sandbox accounts.
+<img width="1521" height="712" alt="image" src="https://github.com/user-attachments/assets/d634a488-d570-42a2-ae0e-face34dc3015" />
+
 
 ## What the project does
 
@@ -24,6 +26,9 @@ Nudge does not use mock invoices or fake payments. PayPal Sandbox is used by def
 - Accept an approved payment plan.
 - Pay an installment through real PayPal Checkout.
 - See payment progress update in the conversation.
+
+  <img width="1382" height="726" alt="image" src="https://github.com/user-attachments/assets/c0497165-594e-4222-afca-208c6f7b32d9" />
+
 
 ### Safety and business logic
 
