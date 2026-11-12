@@ -4,6 +4,8 @@
 
 It helps an owner create and send a real PayPal invoice, lets the client discuss payment options with an AI assistant, and keeps every agreed payment plan inside rules set by the owner.
 
+SEE IT FOR YOURSELF : https://nudge-5yzs.onrender.com
+
 Nudge does not use mock invoices or fake payments. PayPal Sandbox is used by default, so the complete flow can be tested safely with PayPal Sandbox accounts.
 <img width="1521" height="712" alt="image" src="https://github.com/user-attachments/assets/d634a488-d570-42a2-ae0e-face34dc3015" />
 
