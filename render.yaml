@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: nudge
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/config
+    envVars:
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYPAL_BUSINESS_EMAIL
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: PAYPAL_CURRENCY
+        value: USD
+      - key: PAYPAL_BASE
+        value: https://api-m.sandbox.paypal.com
+      - key: PAYPAL_WEBHOOK_ID
+        sync: false
+      - key: LLM_MODEL
+        value: openai/gpt-oss-120b
+      - key: OWNER_NAME
+        sync: false
+      - key: PUBLIC_URL
+        sync: false

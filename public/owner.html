@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1b2a">
+  <title>Nudge · Receivables</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Poppins:ital,wght@0,500;0,600;1,500;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/vendor/ag-grid/styles/ag-grid.min.css">
+  <link rel="stylesheet" href="/vendor/ag-grid/styles/ag-theme-quartz.min.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">
+      <strong>Nudge</strong><small>Receivables workspace</small>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a class="active" href="/">Overview</a>
+      <a href="#invoices">Invoices</a>
+      <a href="#create-panel">Create</a>
+      <a href="#approvals">Approvals</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="avatar" id="avatar" aria-hidden="true"></span>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="page-heading">
+      <div>
+        <p class="eyebrow">Owner dashboard</p>
+        <h1>Keep cash moving.</h1>
+        <p class="subtitle">Create invoices, give clients a clear path to pay, and keep every conversation in one place.</p>
+      </div>
+      <button class="btn primary" id="focus-create">＋ New invoice</button>
+    </section>
+
+    <section class="stats" aria-label="Receivables summary">
+      <article class="stat-card"><span class="stat-label">Total invoiced</span><strong id="stat-total">$0.00</strong><span class="stat-note">Across all invoices</span></article>
+      <article class="stat-card"><span class="stat-label">Collected</span><strong id="stat-collected">$0.00</strong><span class="stat-note positive" id="stat-collected-note">0% of invoiced</span></article>
+      <article class="stat-card"><span class="stat-label">Outstanding</span><strong id="stat-outstanding">$0.00</strong><span class="stat-note">Still to collect</span></article>
+      <article class="stat-card attention"><span class="stat-label">Needs attention</span><strong id="stat-attention">0</strong><span class="stat-note">Owner decisions waiting</span></article>
+    </section>
+
+    <section class="dashboard-grid">
+      <div class="main-column">
+        <section class="card approvals banner" id="approvals">
+          <div class="section-heading"><div><p class="eyebrow">Owner approvals</p><h2>Needs your decision</h2><p class="card-caption">Requests outside your payment limits wait here.</p></div><span class="count-badge" id="approval-count">0</span></div>
+          <div id="approvalList"></div>
+        </section>
+        <section class="card invoices-card" id="invoices">
+          <div class="section-heading"><div><p class="eyebrow">Portfolio</p><h2>Invoices</h2></div><span class="muted small">Updates automatically</span></div>
+          <div id="empty-grid" class="empty-state" hidden><div class="empty-icon">↗</div><h3>Your receivables will appear here</h3><p>Create your first invoice to start a conversation with a client.</p><button class="btn secondary" id="empty-create">Create an invoice</button></div>
+          <div id="grid" class="ag-theme-quartz"></div>
+        </section>
+        <section class="card detail-card" id="detail" hidden></section>
+      </div>
+
+      <aside class="side-column">
+        <section class="card composer-card" id="create-panel">
+          <div class="section-heading"><div><p class="eyebrow">Get paid</p><h2>New invoice</h2></div><span class="step">01</span></div>
+          <p class="helper">Describe the work naturally. Nudge will extract the invoice details and send it through PayPal.</p>
+          <label for="text">What is this invoice for?</label>
+          <textarea id="text" rows="4" placeholder="e.g. Alex owes me $1,200 for brand strategy, due Friday"></textarea>
+          <label for="email">Client email</label>
+          <input id="email" type="email" placeholder="client@example.com">
+          <span id="emailHint" class="field-hint"></span>
+          <button class="btn primary full" id="create">Create &amp; send invoice <span>→</span></button>
+          <p id="createMsg" class="form-message" role="status"></p>
+        </section>
+
+        <section class="card limits-card">
+          <div class="section-heading"><div><p class="eyebrow">Guardrails</p><h2>Payment limits</h2></div><span class="step">02</span></div>
+          <p class="helper">Nudge stays within these limits. Anything outside comes to you.</p>
+          <div class="limit-grid">
+            <div><label for="r1">First payment <small>min %</small></label><input id="r1" type="number" min="0" max="100"></div>
+            <div><label for="r2">Max payments</label><input id="r2" type="number" min="1" max="12"></div>
+            <div><label for="r3">Pay within <small>days</small></label><input id="r3" type="number" min="0"></div>
+            <div><label for="r4">Max discount <small>%</small></label><input id="r4" type="number" min="0" max="50"></div>
+          </div>
+          <button class="btn secondary full" id="saveRules">Save limits</button>
+        </section>
+      </aside>
+    </section>
+  </main>
+  <div id="toast" class="toast" hidden></div>
+  <script src="/vendor/ag-grid/dist/ag-grid-community.min.js"></script>
+  <script src="/owner.js"></script>
+</body>
+</html>
